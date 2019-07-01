@@ -26,7 +26,7 @@ University of Trento
   - [Router-1 test](#router-1-test)
   - [Router-2 test](#router-2-test)
   - [Host-2-c test](#host-2-c-test)
-  
+
 ## Assignment
 Based the Vagrantfile and the provisioning scripts available at: https://github.com/dustnic/dncs-lab the candidate is required to design a functioning network where any host configured
 and attached to router-1 (through switch) can browse a website hosted on host-2-c.
@@ -409,7 +409,35 @@ Test the reachability of the web server with the command `curl 192.168.3.1:80/in
 
 ### Host-1-b test
 
-Once you have log into the VM of *host-1-b* and used command `sudo su` to get superuser permission, you can use the command `ifconfig` to display all the information about the ethernet interfaces of the host. The output should be similar to the one of *host-1-a*.
+Once you have log into the VM of *host-1-b* and used command `sudo su` to get superuser permission, you can use the command `ifconfig` to display all the information about the ethernet interfaces of the host. The output should be:
+```
+eth0      Link encap:Ethernet  HWaddr 08:00:27:20:c5:44
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe20:c544/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:10910 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4307 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:9885661 (9.8 MB)  TX bytes:391995 (391.9 KB)
+
+eth1      Link encap:Ethernet  HWaddr 08:00:27:43:12:f0
+          inet addr:192.168.2.1  Bcast:0.0.0.0  Mask:255.255.255.224
+          inet6 addr: fe80::a00:27ff:fe43:12f0/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:5 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:13 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:414 (414.0 B)  TX bytes:1062 (1.0 KB)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+```
 
 Then you can test the reachability of *host-1-a* with the command `ping 192.168.1.1` and expect the following result :
 ```
@@ -454,71 +482,63 @@ Test the reachability of the web server with the command `curl 192.168.3.1:80/in
 
 Once you have log into the VM of *switch* and used command `sudo su` to get superuser permission, you can use the command `ifconfig` to display all the information about the ethernet interfaces of the host. The output should be:
 ```
-eth0      Link encap:Ethernet  HWaddr 08:00:27:20:c5:44                       
-          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0           
-          inet6 addr: fe80::a00:27ff:fe20:c544/64 Scope:Link                  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1                  
-          RX packets:869 errors:0 dropped:0 overruns:0 frame:0                
-          TX packets:643 errors:0 dropped:0 overruns:0 carrier:0              
-          collisions:0 txqueuelen:1000                                        
-          RX bytes:112273 (112.2 KB)  TX bytes:123993 (123.9 KB)              
+eth0      Link encap:Ethernet  HWaddr 08:00:27:20:c5:44
+          inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe20:c544/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:15098 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:5513 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:14426255 (14.4 MB)  TX bytes:487678 (487.6 KB)
 
-eth1      Link encap:Ethernet  HWaddr 08:00:27:d3:eb:ad                       
-          inet6 addr: fe80::a00:27ff:fed3:ebad/64 Scope:Link                  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1                  
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0                  
-          TX packets:24 errors:0 dropped:0 overruns:0 carrier:0               
-          collisions:0 txqueuelen:1000                                        
-          RX bytes:0 (0.0 B)  TX bytes:1944 (1.9 KB)                          
+eth1      Link encap:Ethernet  HWaddr 08:00:27:06:e8:b2
+          inet6 addr: fe80::a00:27ff:fe06:e8b2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:23 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:57 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2302 (2.3 KB)  TX bytes:4721 (4.7 KB)
 
-eth2      Link encap:Ethernet  HWaddr 08:00:27:85:7a:8c                       
-          inet6 addr: fe80::a00:27ff:fe85:7a8c/64 Scope:Link                  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1                  
-          RX packets:8 errors:0 dropped:0 overruns:0 frame:0                  
-          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0                
-          collisions:0 txqueuelen:1000                                        
-          RX bytes:648 (648.0 B)  TX bytes:648 (648.0 B)                      
+eth2      Link encap:Ethernet  HWaddr 08:00:27:d7:55:ee
+          inet6 addr: fe80::a00:27ff:fed7:55ee/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:30 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:26 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2543 (2.5 KB)  TX bytes:2536 (2.5 KB)
 
-eth3      Link encap:Ethernet  HWaddr 08:00:27:56:47:e3                       
-          inet6 addr: fe80::a00:27ff:fe56:47e3/64 Scope:Link                  
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1                  
-          RX packets:8 errors:0 dropped:0 overruns:0 frame:0                  
-          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0                
-          collisions:0 txqueuelen:1000                                        
-          RX bytes:648 (648.0 B)  TX bytes:648 (648.0 B)                      
+eth3      Link encap:Ethernet  HWaddr 08:00:27:69:8a:28
+          inet6 addr: fe80::a00:27ff:fe69:8a28/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:13 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:13 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1062 (1.0 KB)  TX bytes:1062 (1.0 KB)
 
-lo        Link encap:Local Loopback                                           
-          inet addr:127.0.0.1  Mask:255.0.0.0                                 
-          inet6 addr: ::1/128 Scope:Host                                      
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1                            
-          RX packets:16 errors:0 dropped:0 overruns:0 frame:0                 
-          TX packets:16 errors:0 dropped:0 overruns:0 carrier:0               
-          collisions:0 txqueuelen:0                                           
-          RX bytes:1184 (1.1 KB)  TX bytes:1184 (1.1 KB)                      
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:16 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:16 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:1184 (1.1 KB)  TX bytes:1184 (1.1 KB)
 
-openvswitch Link encap:Ethernet  HWaddr 0a:50:16:eb:b0:44                     
-          inet6 addr: fe80::b415:ff:fed4:307c/64 Scope:Link                   
-          UP BROADCAST RUNNING  MTU:1500  Metric:1                            
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0                  
-          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0                
-          collisions:0 txqueuelen:0                                           
-          RX bytes:0 (0.0 B)  TX bytes:648 (648.0 B)                          
+ovs-system Link encap:Ethernet  HWaddr 96:fd:e3:11:b6:18
+          inet6 addr: fe80::94fd:e3ff:fe11:b618/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:648 (648.0 B)
 
-ovs-system Link encap:Ethernet  HWaddr 86:36:dc:33:24:34                      
-          inet6 addr: fe80::8436:dcff:fe33:2434/64 Scope:Link                 
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1                  
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0                  
-          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0                
-          collisions:0 txqueuelen:0                                           
-          RX bytes:0 (0.0 B)  TX bytes:648 (648.0 B)                          
-
-switch    Link encap:Ethernet  HWaddr 08:00:27:56:47:e3                       
-          inet6 addr: fe80::dc96:22ff:fe64:fe56/64 Scope:Link                 
-          UP BROADCAST RUNNING  MTU:1500  Metric:1                            
-          RX packets:16 errors:0 dropped:0 overruns:0 frame:0                 
-          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0                
-          collisions:0 txqueuelen:0                                           
-          RX bytes:1296 (1.2 KB)  TX bytes:648 (648.0 B)                      
+switch    Link encap:Ethernet  HWaddr 08:00:27:06:e8:b2
+          inet6 addr: fe80::f45d:bdff:feec:ff15/64 Scope:Link
+          UP BROADCAST RUNNING  MTU:1500  Metric:1
+          RX packets:18 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:1420 (1.4 KB)  TX bytes:648 (648.0 B)                  
 ```
 - eth1 is the interface that links the *switch* with the *router-1*  
 - eth2 is the interface that links the *switch* with the *host-1-a*
