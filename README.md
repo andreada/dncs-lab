@@ -4,7 +4,7 @@ University of Trento
 
 ## Table of contents
 
-- [Assignment](#assigment)
+- [Assignment](#assignment)
 - [Network map](#network-map)
 - [Requirements](#requirements)
 - [Network configuration](#network-configuration)
